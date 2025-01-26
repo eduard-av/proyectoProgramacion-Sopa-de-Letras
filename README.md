@@ -167,60 +167,76 @@ sopa_de_letras()
 import random
 import string
 
-def crear_cuadricula(tamaño):
-    """Crea una cuadrícula vacía representada como una lista de strings."""
-    return ["." * tamaño for _ in range(tamaño)]
+def crear_cuadricula(tamaño):  # Crea una cuadrícula vacía representada como una lista de strings.
+    return ["." * tamaño for _ in range(tamaño)]   # Toma los espacios vacios y los multplica por el número que define el usuario del tamaño de la cuadricula.
 
 def colocar_palabras(cuadricula, palabras):
-    """Coloca palabras horizontalmente o verticalmente en la cuadrícula."""
-    tamaño = len(cuadricula)
-    for palabra in palabras:
-        colocada = False
-        while not colocada:
-            direccion = random.choice(["H", "V"])  # H = horizontal, V = vertical
-            if direccion == "H":
+    # Coloca palabras horizontalmente o verticalmente en la cuadrícula.
+    
+    # Definimos el tamaño de la cuadrícula según la longitud de la lista de palabras.
+    tamaño = len(cuadricula)  # Esto asume que la cuadrícula es una lista de listas (2D), y su tamaño es cuadrado.
+    
+    for palabra in palabras:  # Iteramos sobre cada palabra que queremos colocar en la cuadrícula.
+        colocada = False  # Inicializamos la variable, y desde un inicio la caracterizamos como falsa, mientras se cumplan ciertas condiciones al final cambiara a "True", para saber si la palabra ya se ha colocado correctamente.
+        
+        while not colocada:  # Mientras la palabra no se haya colocado, seguimos intentando (hacemos uso de bucles)
+            
+            # Elegimos una dirección aleatoria: "H" para horizontal, "V" para vertical. Aquí es donde se hace uso del import random
+            direccion = random.choice(["H", "V"])  
+            
+            if direccion == "H":  # Si la dirección elegida es horizontal:
+                # Seleccionamos una fila aleatoria dentro de la cuadrícula.
                 fila = random.randint(0, tamaño - 1)
+                # Seleccionamos una columna aleatoria en la fila, asegurándonos de que haya espacio suficiente para la palabra.
                 columna = random.randint(0, tamaño - len(palabra))
-                if all(cuadricula[fila][columna + i] == "." for i in range(len(palabra))):
-                    for i, letra in enumerate(palabra):
+                
+                # Comprobamos si todos los lugares donde queremos colocar la palabra están vacíos (representados por ".").
+                if all(cuadricula[fila][columna + i] == "." for i in range(len(palabra))):         # Si están vacíos, colocamos la palabra en la fila y columna seleccionadas.
+                    for i, letra in enumerate(palabra):                                               # Actualizamos la cuadrícula reemplazando los puntos con las letras de la palabra.
                         cuadricula[fila] = cuadricula[fila][:columna + i] + letra + cuadricula[fila][columna + i + 1:]
-                    colocada = True
-            elif direccion == "V":
+                    colocada = True                                                                    # Marcamos la palabra como colocada.
+
+            elif direccion == "V":  # Si la dirección elegida es vertical:
+                # Seleccionamos una fila aleatoria donde cabe la palabra verticalmente.
                 fila = random.randint(0, tamaño - len(palabra))
+                # Seleccionamos una columna aleatoria en la cuadrícula.
                 columna = random.randint(0, tamaño - 1)
+                
+                # Comprobamos si todos los lugares donde queremos colocar la palabra están vacíos.
                 if all(cuadricula[fila + i][columna] == "." for i in range(len(palabra))):
+                    # Si están vacíos, colocamos la palabra en la columna seleccionada.
                     for i, letra in enumerate(palabra):
+                        # Actualizamos cada fila de la columna correspondiente.
                         cuadricula[fila + i] = cuadricula[fila + i][:columna] + letra + cuadricula[fila + i][columna + 1:]
-                    colocada = True
+                    colocada = True  # Marcamos la palabra como colocada.
 
 def rellenar_espacios(cuadricula):
-    """Rellena los espacios vacíos con letras aleatorias."""
-    for fila in range(len(cuadricula)):
+    # Rellena los espacios vacíos con letras aleatorias.
+    
+    # Recorre cada fila de la cuadrícula (lista de listas).
+    for fila in range(len(cuadricula)):  # Iteramos a través de cada fila en la cuadrícula.
+        
+        # Reemplaza cada punto (.) con una letra aleatoria de A-Z (mayúsculas).
         cuadricula[fila] = "".join(
             random.choice(string.ascii_uppercase) if char == "." else char
-            for char in cuadricula[fila])
+            for char in cuadricula[fila]
 
-def imprimir_cuadricula(cuadricula):
-    """Imprime la cuadrícula de forma legible."""
-    for fila in cuadricula:
-        print(" ".join(fila))
-
-# Programa principal
 def sopa_de_letras():
-    print("¡Bienvenido a la Sopa de Letras!")
+    print("¡Bienvenido a la Sopa de Letras!")  # Se imprime este mensaje que saluda al usuario.
     tamaño = int(input("Ingrese el tamaño de la sopa (entre 10 y 30): "))
-    while tamaño < 10 or tamaño > 30:
-        tamaño = int(input("Por favor, ingrese un tamaño válido (entre 10 y 30): "))
+    while tamaño < 10 or tamaño > 30:  # Se limita el tamaño de cuadricula entre 10 y 30.
+        tamaño = int(input("Por favor, ingrese un tamaño válido (entre 10 y 30): "))  # De ser ingresado un número mayor a 30 o menor a 10, salta el siguiente mensaje.
 
-    palabras = ["PYTHON", "CODIGO", "GRUPO", "SOPA", "LETRAS", "STRING", "MATRIZ"]
-    print("Palabras en la sopa:", ", ".join(palabras))
+    palabras = ["PYTHON", "CODIGO", "GRUPO", "SOPA", "LETRAS", "STRING", "MATRIZ"]       # Se crea una lista con las palbras que el usuario tendra que encontrar. Se pone en mayusculas ya que "string" importa las letras en mayusculas.
+    print("Palabras en la sopa:", ", ".join(palabras))        # Imprime la sopa de letras con las palabras y llenado aleatoriamente.                    
 
     cuadricula = crear_cuadricula(tamaño)
     colocar_palabras(cuadricula, palabras)
-    rellenar_espacios(cuadricula)
+    rellenar_espacios(cuadricula)                            # Se llaman a las funciones y sus argumentos para que el programa funcione correctamente.
     imprimir_cuadricula(cuadricula)
 
 sopa_de_letras()
+
 
 ¡Bienvenido a la Sopa de Letras!
 Ingrese el tamaño de la sopa (entre 10 y 30): 20
