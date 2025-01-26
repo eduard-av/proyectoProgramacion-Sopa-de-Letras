@@ -252,9 +252,10 @@ T W A K J K P D R H O D Q M Y P S F N M
 Como proximos pasos para mejorar el aplicativo, se encuentran:
 
 1. Mejorar el codigo:
+   
    **- Incluir matrices**
 
-2. Agregar niveles de dificultad:
+3. Agregar niveles de dificultad:
 
    **- Facil: Solo palabas horizontales o verticales.**
    
@@ -262,11 +263,11 @@ Como proximos pasos para mejorar el aplicativo, se encuentran:
    
    **- Dificil: Horizontales, verticales y digaonales.**
     
-3. Tratar de incluir cuenta regresiva:
+4. Tratar de incluir cuenta regresiva:
 
    **- Esto tambien afectaria la dificultad.**
 
-4. Interfaz grafica:
+5. Interfaz grafica:
 
    **- Para visualizar la estructura de mejor manera.**
 
