@@ -39,17 +39,13 @@ El programa estará dividido en varias funciones para hacerlo modular y volverlo
   - Mostrar el menú principal.
 
   - Solicitar al usuario el tamaño de la sopa de letras (validando que esté entre 10x10 y 30x30).
-    
-  - Solicitar la lista de palabras y sus coordenadas
 
-    (si bien mencionamos anteriormente que no hariamos uso de las "matrices" por no haberlas visto aun en el curso, nos tomamos la libertad de emplear "listas", algo que al igual que con las "matrices" no habiamos visto, sin el uso de estas (las   
+  si bien mencionamos anteriormente que no hariamos uso de las "matrices" por no haberlas visto aun en el curso, nos tomamos la libertad de emplear "listas", algo que al igual que con las "matrices" no habiamos visto, sin el uso de estas (las   
      "listas") seria mucho más complejo el poder llevarlo a cabo).
 
 **2. Generación de la sopa de letras:**
 
   - Crear la cuadrícula como una cadena de texto con puntos (.) para representar espacios vacíos.
-
-  - Colocar las palabras ingresadas por el usuario en las posiciones especificadas.
 
   - Rellenar los espacios vacíos con letras aleatorias (aqui hariamos uso del import random y llamada de archivos).
 
@@ -270,6 +266,7 @@ Como proximos pasos para mejorar el aplicativo, se encuentran:
 1. Mejorar el codigo:
    
    **- Incluir matrices**
+   **- Incluir que el usuario pueda ingresar las plabras que quiera ver en la sopa de letras**
 
 3. Agregar niveles de dificultad:
 
