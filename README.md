@@ -1,14 +1,14 @@
 # ProyectoProgramacion-Sopa-de-Letras
 En el presente repositorio se desarrollará una aplicación que emule una sopa de letras utilizando Python para la materia de **Programación**
 
-Somos grupo **The Porycodens** integrado por:
+Grupo **The Porycodens**, integrado por:
 - Santiago Montoya.
-- Robert Andres Calderon.
+- Robert Andrés Calderón.
 - Eduard Enrique Avellaneda.
 
 # **Condiciones**
 
-Para la elaboración del proyecto, se nos plantearon ciertas condiciones que dejaremos claras y son las siguientes:
+Para la elaboración del proyecto, se plantearon las siguientes condiciones:
 
 1. Código original.
    
@@ -24,11 +24,11 @@ Para la elaboración del proyecto, se nos plantearon ciertas condiciones que dej
 # **Aclaraciones Pertinentes**
 
 A la fecha planeteada del proyecto, el tema "matrices" no se ha visto en el curso, por ende la resolución planteada (hasta haber abordado el tema) no incluira "matrices" respetando así la debida cronología del curso.
-Para la entrega final se acatara la orden y se emplearan "matrices". Por el momento, se hara uso de lo previamente visto en el curso, como "funciones", "bucles", "strings", "import" y un gran etc que se vera en el desarrollo del codgio acontinuación.
+Para la entrega final se acatará la orden y se emplearan. Por el momento, se hará uso de lo previamente visto en el curso, como "funciones", "bucles", "strings", "import" y un gran etc que se verá en el desarrollo del código.
 
 # **Desarrollo Inicial**
 
-Para empezar con este proyecto, teníamos que primero plantearnos cómo lo llevaríamos a cabo con el conocimiento que teníamos. A continuación, presentamos el enfoque inicial:
+Para empezar con este proyecto, se tenía que primero plantear cómo se llevaríamos a cabo con el conocimiento que teníamos. A continuación, presentamos el enfoque inicial:
 
 **1. Estructura del Programa**
 
@@ -42,7 +42,7 @@ El programa estará dividido en varias funciones para hacerlo modular y volverlo
     
   - Solicitar la lista de palabras y sus coordenadas
 
-    (si bien mencionamos anteriormente que no hariamos uso de las "matrices" por no haberlas visto aun en el curso, nos tomamos la liberta de emplear "listas", algo que al igual que con las "matrices" no habiamos visto, sin el uso de estas (las   
+    (si bien mencionamos anteriormente que no hariamos uso de las "matrices" por no haberlas visto aun en el curso, nos tomamos la libertad de emplear "listas", algo que al igual que con las "matrices" no habiamos visto, sin el uso de estas (las   
      "listas") seria mucho más complejo el poder llevarlo a cabo).
 
 **2. Generación de la sopa de letras:**
@@ -51,7 +51,7 @@ El programa estará dividido en varias funciones para hacerlo modular y volverlo
 
   - Colocar las palabras ingresadas por el usuario en las posiciones especificadas.
 
-  - Rellenar los espacios vacíos con letras aleatorias (aqui hariamos uso del import random).
+  - Rellenar los espacios vacíos con letras aleatorias (aqui hariamos uso del import random y llamada de archivos).
 
 **3. Mostrar la sopa de letras:**
 
@@ -63,7 +63,7 @@ Para empezar, primero teniamos que importar los modulos "string" y "random".
 
 **- String:** Nos permite importar todas las letras del alfabeto en ingles, estas mismas se utilizaran para rellenar la sopa de letras.
 
-**- Random:** Hace que las letras importadas gracias a "string" se puedan ubicar aleatoriamente en la cuadricula de la sopa de letras, así como exoger aleatorimante la dirección en que se dispondran las palabras.
+**- Random:** Hace que las letras importadas gracias a "string" se puedan ubicar aleatoriamente en la cuadricula de la sopa de letras, así como escoger aleatorimante la dirección en que se dispondran las palabras.
 
 
 ```python
