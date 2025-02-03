@@ -58,7 +58,7 @@ Para empezar, primero teniamos que importar los modulos "string" y "random".
 
 ```mermaid
 flowchart TD
-    A[Inicio] --> B[Solicitar al usuario el tamaño
+    A(Inicio) --> B[Solicitar al usuario el tamaño
 de la sopa de letras]
     B-->C{¿El tamaño está
 entre 10 y 30?}
@@ -85,7 +85,7 @@ vacios con letras]
     M-->N[Mostrar la matriz final]
     J-->G
     L-->F
-    N[Final]
+    N-->O(Fin)
     
 ```
 # **Creación de Pseudocódigo**
