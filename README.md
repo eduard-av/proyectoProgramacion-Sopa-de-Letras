@@ -88,5 +88,50 @@ vacios con letras]
     N[Final]
     
 ```
+# **Creación de Pseudocódigo**
 
+Para llevar lo planteado en el diagrama de flujo a un estilo más parecido al codigo sin serlo como tal, creamos un pseudocódigo q nos ayudara a organizar la sopa de letras:
+
+```pseudocode
+INICIO ALGORITMO: Sopa de Letras
+#Importar modulos necesarios
+
+importar random
+importar string
+
+#variables
+
+tamaño:entero
+Lista_de_Palabras:lista
+
+#Función para crear cuadricula
+
+Escribir el "tamaño" de la sopa de letras
+leer tamaño:
+   si tamaño >= 10 y tamaño <= 30 entonces
+      crear cuadricula vacia de tamaño x tamaño
+   sino
+      Pedir al usuario que ingrese un valor dentro del rango
+
+#Función para ingresar las palabras de Lista_de_Palabras en la cuadricula
+
+Elegir aleatoriamente de la lista una palabra
+   Escoger en que dirección y posición va esa palabra
+      Verificar si esa palabra cabe en esa posición
+         Si la palabra cabe en la cuadricula:
+            ponerla en esa posición y eliminarla de la lista de opciones
+         sino
+            eliminar la dirección y posición de la palabra, e intentar de nuevo
+   
+#Si ya estan todas las palabras de Lista_de_Letras, rellenar la cuadricula con letras aleatorias
+
+si Lista_de_Palabras esta vacia entonces
+   para cada celda vacia en cuadricula, poner una letra aleatoria
+
+
+Mostrar la cuadricula con las palabras y las letras al usuario
+
+FIN ALGORITMO
+
+```
 
