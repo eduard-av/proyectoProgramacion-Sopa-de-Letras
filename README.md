@@ -56,4 +56,37 @@ Para empezar, primero teniamos que importar los modulos "string" y "random".
 
 # **Diagrama de Flujo Representativo**
 
+```mermaid
+flowchart TD
+    A[Inicio] --> B[Solicitar al usuario el tamaño
+de la sopa de letras]
+    B-->C{¿El tamaño está
+entre 10 y 30?}
+    C-->|SI| D[Crear una cuadricula vacia
+ con el tamaño dado por
+ el usuario]
+    C-->|NO| E["Error, el tamaño deber
+ ser entre 10 y 30"]
+    E-->B
+    D-->F[Elegir palabra aleatoria de
+la lista]
+    F-->G[Elegir posición aleatoria]
+    G-->H[Elegir dirección aleatoria]
+    H-->I{¿La palabra cabe en dicha
+ posición y dirección?}
+    I-->|NO| J[Eliminar de las opciones
+ aleatorias dichas celdas
+ya comprobadas]
+    I-->|SI| K{¿Son todas las
+palabras necesarias?}
+    K-->|NO| L[Eliminar de la palabra la lista]
+    K-->|SI| M[Rellenar los espacios
+vacios con letras]
+    M-->N[Mostrar la matriz final]
+    J-->G
+    L-->F
+    N[Final]
+    
+```
+
 
