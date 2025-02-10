@@ -123,10 +123,8 @@ Elegir aleatoriamente de la lista una palabra
          sino
             eliminar la dirección y posición de la palabra, e intentar de nuevo
    
-#Si ya estan todas las palabras de Lista_de_Letras, rellenar la cuadricula con letras aleatorias
-
-si Lista_de_Palabras esta vacia entonces
-   para cada celda vacia en cuadricula, poner una letra aleatoria
+#Rellenar la cuadricula con letras aleatorias (con funciones o lista)
+Para cada espacio de la cuadrícula representado con ".", rellenar con una letra aleatoria (funciones o lista)
 
 
 Mostrar la cuadricula con las palabras y las letras al usuario
