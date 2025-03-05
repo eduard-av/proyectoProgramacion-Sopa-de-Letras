@@ -147,13 +147,32 @@ matriz = [["." for x in range(tamaño)] for y in range(tamaño)]  #aquí nos ase
    - Hay que verificar que dicha palabra quepa, sino, intentar una posición hasta que lo haga.
    - Luego de ingresar la primera palabra, comprobar que desde la segunda en adelante, la posición escogida no se sobreponga sobre una ya existente.
 
+``` python
+import random
+
+def insertar_palabra(matriz, tamaño, palabra, dificultad):
+
+fila = random.randint(0, tamaño - 1)
+columna = random.randint(0, tamaño - 1)
+``` 
+
 5. ¿Cómo se llena la sopa de letras con letras aleatorias?
 
 - Una vez puestas todas las palabras, hay que rellenar lo faltante con letras aleatorias.
   
    - Lo faltante, en este caso, vendrian siendo toda posición con "." en ella.
    - Hay que recorrer toda la matriz y reemplazar.
+   - Aquí tambien hay que emplear random, y ademas el import de string, con la finalidad de poder acceder a los elementos del codigo ASCII para elegir letras al azar.
 
+``` python
+import random
+import string
+
+for x in range(len(matriz)):                        #hay que recorrer cada fila
+   for y in range(len(matrix[x]))                   #y luego recorrer cada elemento en la fila, para encontrar los "." a reemplazar
+
+random.choice(string,ascii_uppercase)              #aquí se selecciona una letra random, del lenguaje ASCII, y se pone el uppercase para solo poder seleccionar mayusculas, para así evitar poner otro tipo de elementos, como números.
+``` 
 6. Ahora tenemos la sopa de letras ya formada, hay que encontrar las palabras. ¿Pero cómo?
 
 - Principalmente, hay que pedirle al usarió la palabra encontrada.
@@ -161,6 +180,13 @@ matriz = [["." for x in range(tamaño)] for y in range(tamaño)]  #aquí nos ase
    - Hay que recorrer la cuadricula completa.
    - Hay que verificar si la palabra encontrada, pertenece a la lista de palabras que se encuentran dentro de la sopa de letras.
    - Y ahora, hay que encontrar la manera de resaltar la palabra hallada, podemos hacerlo con parentesis.
+ 
+``` python
+for x in range(len(matriz)):                        #hay que emplear el range para recorrer toda la cuadricula
+   for y in range(len(matrix[x]))
+
+                                                       #tenemos que emplear un condicional "if" para verificar que la palabra, se encuentre en la lista de palabras 
+``` 
 
 7. Listo, el usuario ha encontrado todas las palabras, pero hay que tener un puntaje para hacer más divertido el juego.
 
@@ -168,12 +194,67 @@ matriz = [["." for x in range(tamaño)] for y in range(tamaño)]  #aquí nos ase
 
    - Cada palabra encontrada tiene que valer cierta cantidad 2 - 5 - 10, no importa, lo importante es que tenga un valor y este sea acumulable para la totalidad de las palabras, para tener un puntaje final.
    - Una vez registrada una palabra, hay que removerla para evitar que el usuario pueda sumar más de los puntos asignados por palabra, con la misma palabra.
+  
+``` python
+puntaje = 0                        #inicializamos una variable con el nombre puntaje, dicha variable guardara como resultado el acumulado del puntaje
+
+while palabras > 0:                      # se incicia un bucle teniendo como condición "palabras" siendo la lista donde se guardan las palabras, valga la redundancia, esto asegura que se repita el proceso de verificar el puntaje, hasta que "palabras" quede vacio
+   palabra_encontrada = input("Ingrese una palabra encontrada: ")
+   if palabra_encontrada in palabras:
+      encontrar palabras(matriz, palabra_encontrada)
+      palabras.remove(palabra_encontrada)           #se elimina la palabra encontrada con la para evitar repetir la misma palabra
+      puntaje += i                                 #siendo i cualquier valor, el puntaje que se poonga a cada palabra encontrada
+print(f"Puntaje total: {puntaje}")
+``` 
 
 8. Bueno, ya tenemos todo.. ¿o no?, bueno, tal vez podriamos agregar algo más, como un temporizador, hacerlo con tiempo.
 
 - Listo, tenemos que para esto, importar time para llevarlo acabo.
 
+``` python
+import time
+
+def temporizador(segundos:int):
+  while segundos > 0:                          #se crea un bucle
+    minutes, seconds = segundos//60, segundos%60           #esto lo que hace es poner los minutos como enteros y poner a su lado los segundos restantes
+    print (f"{minutes: }:{seconds: }")             
+    time.sleep(1)                     #este es el avance que va a tener el temporizador, en este caso va de segundo en segundo
+    segundos -= 1                     #y pues se hace la cuenta regresiva
+
+``` 
+
+
 # **Desglose Final del Codigo**
+
+## **Función Crear Cuadricula**
+
+Esta función era relativamente sencilla, nada más habia que crear una lista de listas (matriz) y que tanto el primer indexador [x] -> filas, como el segundo [y] -> columnas, tengan la misma cantidad de elementos, determinado por el usuario con la entrada "tamaño".
+
+``` python
+def crear_cuadrícula(tamaño):                                           #crear la cuadricula, con el tamaño ingresado por el usuario (vacia)
+  matriz = [["." for x in range(tamaño)] for y in range(tamaño)]        #recorre cada fila y cada elemento vacio en cada una de estas y los reemplaza por "."
+  return matriz
+```
+## **Función Insertar Palabras**
+
+En el proyecto esta seria la función más larga de todas, teniendo que comprobar multiples condiciones y parametros para poder llevarse acabo correctamente.
+
+``` python
+def insertar_palabra_simple(matriz, tamaño, palabra, dificultad):                       #se crea la función y tendra como argumento a matriz, tamaño, palara, dificultad (como mencionamos, hay que tener en cuenta y comprobar bastantes elementos)
+  palabra_len = len(palabra)             
+  intentos = 100                                                                        #esta función es prueba y error, y limitamos el número de intentos a 100
+  while intentos>0:                                                                     #se inicia el bucle
+    fila_inicial = random.randint(0, tamaño - 1)                                        #en cada intento, se escogera un número aleatorio entre 0 y el tamaño de la cuadricula - 1
+    col_inicial = random.randint(0, tamaño - 1) 
+```
+Vamos a explicar las dificultades posibles:
+
+``` python
+if difcultad == 1           
+if dificultad == 2
+if dificultdad == 3
+```
+## **Función Encontrar Palabras**
 
 Para la función encontrar palabras, función que nos resulto la más compleja, primero definimos la función y los argumentos que tomaría:
 
@@ -234,14 +315,33 @@ def encontrar_palabras(matriz, palabra):
 Ahora, nos quedaria faltanto el destacar las diagonales
 
 ``` python
-  for x in range(tamañoM - palabra_len + 1):                           #en las pasadas aumentaba 
+  for x in range(tamañoM - palabra_len + 1):                           
+    for y in range(tamañoM - palabra_len + 1):
+      if "".join(matriz[x + i][y + i] for i in range(palabra_len)) == palabra:
+        for i in range(palabra_len):
+          matriz[x + i][y + i] = f"({matriz[x + i][y + i]})"               #en las pasadas aumentaba o en x (para las horizontales) o en y (para las verticales), en este caso las diagonales aumentan las 2, como en escalerita
+``` 
+Luego de mucho, el resultado ya en completo, quedaría así:
+
+``` python
+  tamañoM = len(matriz)
+  palabra_len = len(palabra)
+  for x in range (tamañoM):
+    for y in range (tamañoM - palabra_len):
+      if "".join(matriz[x][y:y + palabra_len]) == palabra:
+        for i in range(palabra_len):
+          matriz[x][y + i] = f"({matriz[x][y + i]})"
+  for y in range(tamañoM):
+    for x in range(tamañoM - palabra_len + 1):
+      if "".join(matriz[x + i][y] for i in range(palabra_len)) == palabra:
+        for i in range(palabra_len):
+          matriz[x + i][y] = f"({matriz[x + i][y]})"
+  for x in range(tamañoM - palabra_len + 1):
     for y in range(tamañoM - palabra_len + 1):
       if "".join(matriz[x + i][y + i] for i in range(palabra_len)) == palabra:
         for i in range(palabra_len):
           matriz[x + i][y + i] = f"({matriz[x + i][y + i]})"
 ``` 
-
-
 
 
 
