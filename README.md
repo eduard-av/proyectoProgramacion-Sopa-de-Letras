@@ -204,3 +204,5 @@ def encontrar_palabras(matriz, palabra):
           matriz[x][y + i] = f"({matriz[x][y + i]})"                       #resalta las palabras horizontales
 ``` 
 
+
+
