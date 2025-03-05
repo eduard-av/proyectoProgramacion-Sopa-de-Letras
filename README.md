@@ -1,5 +1,5 @@
 # ProyectoProgramacion-Sopa-de-Letras
-En el presente repositorio se desarrollará una aplicación que emule una sopa de letras utilizando Python para la materia de **Programación**
+En el presente repositorio se desarrollará una aplicación que emule una sopa de letras utilizando el lenguaje de programación 'Python' para la materia de **Programación Básica**.
 
 Grupo **The Porycodens**, integrado por:
 - Santiago Montoya.
@@ -17,7 +17,7 @@ Para la elaboración del proyecto, se plantearon las siguientes condiciones:
 3. Interacción y manejo a través de la consola.
    
 4. Definidido por el usuario:
-     - Matriz del tamaño de la sopa de letras (Min: 10x10, Max: 30x30)
+     - Matriz del tamaño de la sopa de letras (Min: 10x10, Max: 30x30).
      - Ingreso de las palabras: Lista de coordenadas, Strings.
      - Nivel de dificultad: Asociado a cantidad de palabras, verticales, horizontales, diagonal.
 
@@ -57,7 +57,7 @@ vacios con letras]
 ```
 # **Creación de Pseudocódigo**
 
-Para llevar lo planteado en el diagrama de flujo a un estilo más parecido al codigo sin serlo como tal, creamos un pseudocódigo q nos ayudara a organizar la sopa de letras:
+Se lleva lo planteado en el diagrama de flujo a un esquema de organización diferente, creando un pseudocódigo que nos ayude a organizar y entender de manera más efecticva el programa de la sopa de letras:
 
 ```pseudocode
 INICIO ALGORITMO: Sopa de Letras
@@ -100,15 +100,15 @@ FIN ALGORITMO
 
 ```
 
-# **Preguntas Importantes a Respondernos antes de ir al codigo**
+# **Preguntas Importantes a Respondernos antes de ir al código**
 
 1. ¿Cómo podemos delimitar el tamaño de cuadricula para el usuarío?
    
-- Con una condición, un while, con la finalidad de que el valor este dentro de los rangos permitidos.
+- Con una condición, un while, permitiendo que el valor este dentro de los rangos permitidos.
 
-   - El while es facil de entender y modificar.
-   - En un simple bucle podemos ahorrarnos varias líneas de codigo.
-   - No para si el usuarío ingresa valores fuera de los rangos.
+   - El while es fácil de entender y modificar.
+   - En un simple bucle podemos ahorrar varias líneas de código.
+   - No se detiene en caso de que el usuarío ingresa valores fuera de los rangos.
 
 ```python
 
@@ -117,10 +117,10 @@ while 10 <= tamaño <= 30:         #se tiene que cumplir esta condición
 
 2. ¿Cómo determinar la dificultad del juego?
 
-- Al igual que con la condición del tamaño, podemos hacer uso del bucle.
+- Al igual que con la condición del 'tamaño', hacemos uso del bucle.
 
    - Pedir al usuario que ingrese la dificultad, dentro de 3 niveles 1,2 y 3.
-   - Verificar si el dato de entrada es uno de estos 3, si así lo es, determinar esa dificultad, sino, pedir de nuevo al usuario ingresar un dato valido.
+   - Verificar si el dato de entrada es uno de estos 3, si así lo es, determinar esa dificultad, sino, pedir de nuevo al usuario ingresar un dato válido.
 
 ```python
 while dif not in [1,2,3]:        #la dificultad tendra 3 niveles: Facil - Solo palabras Horizontales
@@ -130,10 +130,10 @@ while dif not in [1,2,3]:        #la dificultad tendra 3 niveles: Facil - Solo p
 
 3. ¿Cómo apartir del tamaño ingresado del usuario, crear la cuadricula de la sopa?
 
-- Usando una lista de listas, osea una matriz, para representar la forma normal de una sopa de letras.
+- Usando una lista de listas, es decir, una matriz, para representar la forma normal de una sopa de letras.
 
-   - Hay que crearla del tamaño del usuario.
-   - Poner cualquier tipo de identificador para llenar la lista provicionalmente, puede ser con espacios, puntos etc. Emplearemos puntos.
+   - Se crea según el tamaño qye digite el usuario (mismas filas, mismas columnas).
+   - Poner cualquier tipo de identificador para llenar la lista provisionalmente, puede ser con espacios, puntos etc. Emplearemos puntos.
  
 ``` python
 matriz = [["." for x in range(tamaño)] for y in range(tamaño)]  #aquí nos aseguramos que tanto las filas (x) como las columnas (y) se rellenen con "."
@@ -162,7 +162,7 @@ columna = random.randint(0, tamaño - 1)
   
    - Lo faltante, en este caso, vendrian siendo toda posición con "." en ella.
    - Hay que recorrer toda la matriz y reemplazar.
-   - Aquí tambien hay que emplear random, y ademas el import de string, con la finalidad de poder acceder a los elementos del codigo ASCII para elegir letras al azar.
+   - Aquí también hay que emplear random, y ademas el import de string, con la finalidad de poder acceder a los elementos del codigo ASCII para elegir letras al azar.
 
 ``` python
 import random
@@ -175,11 +175,11 @@ random.choice(string,ascii_uppercase)              #aquí se selecciona una letr
 ``` 
 6. Ahora tenemos la sopa de letras ya formada, hay que encontrar las palabras. ¿Pero cómo?
 
-- Principalmente, hay que pedirle al usarió la palabra encontrada.
+- Empezando, se le solicita al usuario la palabra encontrada.
 
-   - Hay que recorrer la cuadricula completa.
-   - Hay que verificar si la palabra encontrada, pertenece a la lista de palabras que se encuentran dentro de la sopa de letras.
-   - Y ahora, hay que encontrar la manera de resaltar la palabra hallada, podemos hacerlo con parentesis.
+   - Se recorre la cuadrícula completa.
+   - Se verifica si la palabra encontrada pertenece a la lista de palabras que se encuentran dentro de la sopa de letras.
+   - Y ahora, una vez se verifique que la palabra encontrada sea correcta, resaltamos la misma para generar un cambio visual en la matriz (sopa de letras), podemos hacerlo con paréntesis.
  
 ``` python
 for x in range(len(matriz)):                        #hay que emplear el range para recorrer toda la cuadricula
@@ -190,7 +190,7 @@ for x in range(len(matriz)):                        #hay que emplear el range pa
 
 7. Listo, el usuario ha encontrado todas las palabras, pero hay que tener un puntaje para hacer más divertido el juego.
 
-- Entonces, el puntaje podriamos hacerlo basado en las palabras encontradas.
+- Entonces, el puntaje se realiza conforme a cada palabra encontrada, aumentado por cada una respectivamente.
 
    - Cada palabra encontrada tiene que valer cierta cantidad 2 - 5 - 10, no importa, lo importante es que tenga un valor y este sea acumulable para la totalidad de las palabras, para tener un puntaje final.
    - Una vez registrada una palabra, hay que removerla para evitar que el usuario pueda sumar más de los puntos asignados por palabra, con la misma palabra.
@@ -224,11 +224,11 @@ def temporizador(segundos:int):
 ``` 
 
 
-# **Desglose Final del Codigo**
+# **Desglose Final del Código**
 
-## **Función Crear Cuadricula**
+## **Función Crear Cuadrícula**
 
-Esta función era relativamente sencilla, nada más habia que crear una lista de listas (matriz) y que tanto el primer indexador [x] -> filas, como el segundo [y] -> columnas, tengan la misma cantidad de elementos, determinado por el usuario con la entrada "tamaño".
+Esta función es relativamente sencilla, nada más hay que crear una lista de listas (matriz) y que tanto el primer indexador [x] -> filas, como el segundo [y] -> columnas, tengan la misma cantidad de elementos, determinado por el usuario con la entrada "tamaño".
 
 ``` python
 def crear_cuadrícula(tamaño):                                           #crear la cuadricula, con el tamaño ingresado por el usuario (vacia)
@@ -237,10 +237,10 @@ def crear_cuadrícula(tamaño):                                           #crear
 ```
 ## **Función Insertar Palabras**
 
-En el proyecto esta seria la función más larga de todas, teniendo que comprobar multiples condiciones y parametros para poder llevarse acabo correctamente.
+En el proyecto esta es la función más larga de todas, teniendo que comprobar múltiples condiciones y parámetros para poder llevarse acabo correctamente.
 
 ``` python
-def insertar_palabra_simple(matriz, tamaño, palabra, dificultad):                       #se crea la función y tendra como argumento a matriz, tamaño, palara, dificultad (como mencionamos, hay que tener en cuenta y comprobar bastantes elementos)
+def insertar_palabra_simple(matriz, tamaño, palabra, dificultad):                       #se crea la función que tendrá como argumento a matriz, tamaño, palara, dificultad (como mencionamos, hay que tener en cuenta y comprobar bastantes elementos)
   palabra_len = len(palabra)             
   intentos = 100                                                                        #esta función es prueba y error, y limitamos el número de intentos a 100
   while intentos>0:                                                                     #se inicia el bucle
@@ -263,7 +263,7 @@ def encontrar_palabras(matriz, palabra):
   tamañoM = len(matriz)                            #se le agrega a la variable tamañoM el valor de la longitud de la matriz
   palabra_len = len(palabra)                       #y a palabra_len se le asigno el mismo valor de la longitud de la palabra a encontrar
 ```
-Luego se prosiguio a recorrer primero las filas(x) y luego las columnas (y).
+Luego, se recorre primero las filas(x) y luego las columnas (y).
 
 ``` python
 def encontrar_palabras(matriz, palabra):  
@@ -279,12 +279,12 @@ def encontrar_palabras(matriz, palabra):
   tamañoM = len(matriz)
   palabra_len = len(palabra)
   for x in range (tamañoM):                       
-    for y in range (tamañoM - palabra_len):         
+    for y in range (tamañoM - palabra_len + 1):         
       if "".join(matriz[x][y:y + palabra_len]) == palabra:                   #toma una sublista de la fila, en un rango que va desde y hasta y+
         for i in range(palabra_len):
           matriz[x][y + i] = f"({matriz[x][y + i]})"                       #resalta las palabras horizontales
 ``` 
-Ahora abria que hacer lo mismo, pero con pequeñas variaciones, ya que ahora teniamos que destacar, tanto las palabras verticiales:
+Se realiza lo mismo con pequeñas variaciones, destacando tanto las palabras verticiales:
 
 ``` python
   for y in range(tamañoM):
@@ -312,7 +312,7 @@ def encontrar_palabras(matriz, palabra):
           matriz[x + i][y] = f"({matriz[x + i][y]})"
 ``` 
 
-Ahora, nos quedaria faltanto el destacar las diagonales
+Ahora, queda destacar las diagonales:
 
 ``` python
   for x in range(tamañoM - palabra_len + 1):                           
@@ -321,7 +321,7 @@ Ahora, nos quedaria faltanto el destacar las diagonales
         for i in range(palabra_len):
           matriz[x + i][y + i] = f"({matriz[x + i][y + i]})"               #en las pasadas aumentaba o en x (para las horizontales) o en y (para las verticales), en este caso las diagonales aumentan las 2, como en escalerita
 ``` 
-Luego de mucho, el resultado ya en completo, quedaría así:
+El resultado ya en completo, queda así:
 
 ``` python
   tamañoM = len(matriz)
