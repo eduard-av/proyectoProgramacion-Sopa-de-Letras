@@ -169,11 +169,12 @@ matriz = [["." for x in range(tamaño)] for y in range(tamaño)]  #aquí nos ase
    - Cada palabra encontrada tiene que valer cierta cantidad 2 - 5 - 10, no importa, lo importante es que tenga un valor y este sea acumulable para la totalidad de las palabras, para tener un puntaje final.
    - Una vez registrada una palabra, hay que removerla para evitar que el usuario pueda sumar más de los puntos asignados por palabra, con la misma palabra.
 
+
 8. Bueno, ya tenemos todo.. ¿o no?, bueno, tal vez podriamos agregar algo más, como un temporizador, hacerlo con tiempo.
 
 - Listo, tenemos que para esto, importar time para llevarlo acabo.
 
-
+![Vista previa](temporizador.png)
 
 
 
