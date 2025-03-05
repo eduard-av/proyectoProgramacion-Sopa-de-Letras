@@ -169,21 +169,38 @@ matriz = [["." for x in range(tamaño)] for y in range(tamaño)]  #aquí nos ase
    - Cada palabra encontrada tiene que valer cierta cantidad 2 - 5 - 10, no importa, lo importante es que tenga un valor y este sea acumulable para la totalidad de las palabras, para tener un puntaje final.
    - Una vez registrada una palabra, hay que removerla para evitar que el usuario pueda sumar más de los puntos asignados por palabra, con la misma palabra.
 
-
 8. Bueno, ya tenemos todo.. ¿o no?, bueno, tal vez podriamos agregar algo más, como un temporizador, hacerlo con tiempo.
 
 - Listo, tenemos que para esto, importar time para llevarlo acabo.
 
-![Vista previa](temporizador.png)
+# **Desglose Final del Codigo**
 
+Para la función encontrar palabras, función que nos resulto la más compleja, primero definimos la función y los argumentos que tomaría:
 
+``` python
+def encontrar_palabras(matriz, palabra):  
+  tamañoM = len(matriz)                            #se le agrega a la variable tamañoM el valor de la longitud de la matriz
+  palabra_len = len(palabra)                       #y a palabra_len se le asigno el mismo valor de la longitud de la palabra a encontrar
+```
+Luego se prosiguio a recorrer primero las filas(x) y luego las columnas (y)
 
+``` python
+def encontrar_palabras(matriz, palabra):  
+  tamañoM = len(matriz)  
+  palabra_len = len(palabra)  
+  for x in range (tamañoM):                        #recorre las filas
+    for y in range (tamañoM - palabra_len):            #recorre las columnas teniendo cuidado de no salirse de la cuadricula
+```
+Una vez recorridas las filas y las columnas 
 
-
-
-
-
-
-
-
+``` python
+def encontrar_palabras(matriz, palabra):
+  tamañoM = len(matriz)
+  palabra_len = len(palabra)
+  for x in range (tamañoM):                       
+    for y in range (tamañoM - palabra_len):         
+      if "".join(matriz[x][y:y + palabra_len]) == palabra:                   #toma una sublista de la fila, en un rango que va desde y hasta y+
+        for i in range(palabra_len):
+          matriz[x][y + i] = f"({matriz[x][y + i]})"                       #resalta las palabras horizontales
+``` 
 
