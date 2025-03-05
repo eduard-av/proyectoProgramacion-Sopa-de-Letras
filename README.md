@@ -342,37 +342,208 @@ El resultado ya en completo, queda así:
         for i in range(palabra_len):
           matriz[x + i][y + i] = f"({matriz[x + i][y + i]})"
 ``` 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## **Puntaje**
+Para dar un "incentivo" en la resolución de la sopa de letras, se hace uso de puntajes para hacer más entretenida la experiencia:
 
 ``` python
+ puntaje = 0
+  while len(palabras)>0:
+    palabra_encontrada = input("\nIngrese una palabra encontrada: ").strip().upper()             #.strip() y .upper() se usan para que todas las palabras ingresadas esten en el mismo formato
+    if palabra_encontrada in palabras:
+      encontrar_palabras(matriz, palabra_encontrada)  
+      palabras.remove(palabra_encontrada)                                                        #si la palabra encontrada esta en palabras, se elimina
+      puntaje += 10                                                                              #por cada palabra encontrada se suma 10 puntos
+      print(f"¡Bien hecho! Puntaje total: {puntaje}") 
+      for i in matriz:
+       print(" ".join(i))                                                                    
+  print(f"El juego ha terminado. \n Su puntaje final es: {puntaje}")
 ``` 
+
+## **Función Principal**
+
+``` python
+if __name__ == "__main__":
+  print("¡Bienvenido a esta sopa de letras! \nA continuación, vamos a determinar sus condiciones.")
+  tamaño = int(input("\n- Ingrese el tamaño de la sopa de letras (10-30): "))
+  while tamaño < 10 or tamaño > 30:
+    tamaño = int(input("- Por favor, ingrese un tamaño válido (10-30): ")) 
+  #Primera interacción del Usuario con el programa, en este el programa solicita al usuario las condiciones 
+  #siendo la primera de estas el tamaño de la cuadricula, en caso de que este dato no sea valido, entra en un bucle hasta que sea ejecutable.
+
+
+  palabras = input("- Ingrese las palabras a encontrar (separadas por espacios): ").strip().upper().split()
+  #Por este lado tenemos el ingreso de las palabras deseadas por el usuario para la sopa de letras, pasando por los metodos de strip, upper y split.
+  #strip retorna las palabras sin espacios, upper las retorna en mayusculas sostenidas y split separa los caracteres de una palabra en una lista.
+
+  dificultad = int(input("- Ingrese la dificultad deseada: \n 1. Fácil. \n 2. Intermedia \n 3. Difícil \n --> "))
+  while dificultad not in [1, 2, 3]:
+    dificultad = int(input("Por favor, ingrese una dificultad válida (1, 2 o 3): "))
+  #En esta siguiente interacción con el programa, este solicita la dificultad deseada, la cual consta de 3 niveles y funciona con el mismo sistema del tamaño.
+  #Esto es para que si se ingresa un valor no deseado el programa no se rompa al entrar en un ciclo.
+
+  matriz = crear_cuadrícula(tamaño)
+ 
+  for i in palabras:
+    insertar_palabra_simple(matriz, tamaño, i, dificultad)
+  
+  rellenar_matriz(matriz)
+  #Este es el llamado de las funciones con los datos ingresados por el usuario.
+  
+  tiempo_total = int(input("\n- Ingrese el tiempo total (en segundos) deseado para resolver la sopa de letras: "))
+  #Ingreso de los segundos deseados por el usuario, y asi darle valor a la variable.
+
+  print("\nSopa de letras generada:")
+
+  for i in matriz:
+    print(" ".join(i))
+  #Impresión de la sopa de letras.
+ 
+
+  print("\nEl tiempo ha comenzado! Mucha suerte.")
+  temporizador(tiempo_total)
+  #Impresión de el temporizador con el tiempo seleccionado por el usuario.
+``` 
+
+# **Demostración**
+Como primer aparición al ejecutar el codigo, aparece el siguiente texto e input:
+
+``` markdown
+¡Bienvenido a esta sopa de letras! 
+A continuación, vamos a determinar sus condiciones.
+
+- Ingrese el tamaño de la sopa de letras (10-30): 15
+``` 
+Ingresado el número 15:
+
+``` markdown
+¡Bienvenido a esta sopa de letras! 
+A continuación, vamos a determinar sus condiciones.
+
+- Ingrese el tamaño de la sopa de letras (10-30): 15
+- Ingrese las palabras a encontrar (separadas por espacios): Casa Programación 
+```
+Ingresadas dichas palabras:
+
+``` markdown
+¡Bienvenido a esta sopa de letras! 
+A continuación, vamos a determinar sus condiciones.
+
+- Ingrese el tamaño de la sopa de letras (10-30): 15
+- Ingrese las palabras a encontrar (separadas por espacios): Casa Programación 
+- Ingrese la dificultad deseada: 
+ 1. Fácil. 
+ 2. Intermedia 
+ 3. Difícil 
+```
+Puesta como dificultad la número 2:
+
+``` markdown
+¡Bienvenido a esta sopa de letras! 
+A continuación, vamos a determinar sus condiciones.
+
+- Ingrese el tamaño de la sopa de letras (10-30): 15
+- Ingrese las palabras a encontrar (separadas por espacios): Casa Programación 
+- Ingrese la dificultad deseada: 
+ 1. Fácil. 
+ 2. Intermedia 
+ 3. Difícil 
+ --> 2
+Decida la dirección para agregar la palabra: 
+ - 'H': Para horizontales 
+ - 'V': Para verticales 
+  Aquí su decisión:  h
+```
+Se selecciono como primera dirección y v como segunda, tomando un total de 4 intentos para poner las palabras en la cuadricula.
+
+``` markdown
+Decida la dirección para agregar la palabra: 
+ - 'H': Para horizontales 
+ - 'V': Para verticales 
+  Aquí su decisión:  h
+La palabra 'CASA' no ha podido ser colocada conforme a la dirección H 
+Decida la dirección para agregar la palabra: 
+ - 'H': Para horizontales 
+ - 'V': Para verticales 
+  Aquí su decisión:  h
+Decida la dirección para agregar la palabra: 
+ - 'H': Para horizontales 
+ - 'V': Para verticales 
+  Aquí su decisión:  v
+La palabra 'PROGRAMACIÓN' no ha podido ser colocada conforme a la dirección V 
+Decida la dirección para agregar la palabra: 
+ - 'H': Para horizontales 
+ - 'V': Para verticales 
+  Aquí su decisión:  v
+```
+
+Luego de esto se pide al usuario el tiempo para resolver la sopa de letras:
+
+``` markdown
+- Ingrese el tiempo total (en segundos) deseado para resolver la sopa de letras: 10
+``` 
+
+Puesto el número, se imprime la sopa de letras y empieza el temporizador con el la cuenta atras:
+
+
+``` markdown
+Sopa de letras generada:
+D M U O M J Q O S P Q Q B X E
+F O J A H S R T S R A E L Z I
+U C A S A L G K Y O Q O M X J
+R R G X Y T X I T G F T T L Y
+V M G C F C E S U R Q Y W A Q
+W M L G G L X L X A V O X C E
+U U A W N P W F K M Z H K J Q
+L O H T L U Z Z U A C R W G G
+G Y J D I E A U X C H R I Q C
+U N S W M V Z P Z I D R E K U
+A K W Z P B Q W H Ó M D X T R
+Q E C Z U I R A X N G A A Z W
+O S W W I J D H X H V E P N F
+Q T G C L V H W A T K W Q Q O
+V G Z G Q E I R R R B T Q J D
+
+El tiempo ha comenzado! Mucha suerte.
+00:10
+00:09
+00:08
+00:07
+00:06
+00:05
+00:04
+00:03
+00:02
+00:01
+¡El tiempo ha finalizado!
+
+Ingrese una palabra encontrada:
+
+```
+Ingresadas las dos palabras, el programa finaliza y se imprime lo siguiente:
+
+``` markdown
+Ingrese una palabra encontrada: programación
+¡Bien hecho! Puntaje total: 20
+D M U O M J Q O S (P) Q Q B X E
+F O J A H S R T S (R) A E L Z I
+U (C) (A) (S) (A) L G K Y (O) Q O M X J
+R R G X Y T X I T (G) F T T L Y
+V M G C F C E S U (R) Q Y W A Q
+W M L G G L X L X (A) V O X C E
+U U A W N P W F K (M) Z H K J Q
+L O H T L U Z Z U (A) C R W G G
+G Y J D I E A U X (C) H R I Q C
+U N S W M V Z P Z (I) D R E K U
+A K W Z P B Q W H (Ó) M D X T R
+Q E C Z U I R A X (N) G A A Z W
+O S W W I J D H X H V E P N F
+Q T G C L V H W A T K W Q Q O
+V G Z G Q E I R R R B T Q J D
+El juego ha terminado. 
+ Su puntaje final es: 20
+```
+
+
+
+
+# **GRACIAS**
