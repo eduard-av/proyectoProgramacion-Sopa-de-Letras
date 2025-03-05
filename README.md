@@ -182,7 +182,7 @@ def encontrar_palabras(matriz, palabra):
   tamañoM = len(matriz)                            #se le agrega a la variable tamañoM el valor de la longitud de la matriz
   palabra_len = len(palabra)                       #y a palabra_len se le asigno el mismo valor de la longitud de la palabra a encontrar
 ```
-Luego se prosiguio a recorrer primero las filas(x) y luego las columnas (y)
+Luego se prosiguio a recorrer primero las filas(x) y luego las columnas (y).
 
 ``` python
 def encontrar_palabras(matriz, palabra):  
@@ -191,7 +191,7 @@ def encontrar_palabras(matriz, palabra):
   for x in range (tamañoM):                        #recorre las filas
     for y in range (tamañoM - palabra_len):            #recorre las columnas teniendo cuidado de no salirse de la cuadricula
 ```
-Una vez recorridas las filas y las columnas 
+Una vez recorridas las filas y las columnas, esto para las palabras ubicadas horizontalmente.
 
 ``` python
 def encontrar_palabras(matriz, palabra):
@@ -203,6 +203,76 @@ def encontrar_palabras(matriz, palabra):
         for i in range(palabra_len):
           matriz[x][y + i] = f"({matriz[x][y + i]})"                       #resalta las palabras horizontales
 ``` 
+Ahora abria que hacer lo mismo, pero con pequeñas variaciones, ya que ahora teniamos que destacar, tanto las palabras verticiales:
+
+``` python
+  for y in range(tamañoM):
+    for x in range(tamañoM - palabra_len + 1):                     #aquí se agrega el uno, ya que el rango en range, el final no lo toma, toma el anterior, por ende habia que incluirlo
+      if "".join(matriz[x + i][y] for i in range(palabra_len)) == palabra:                    #lo mismo que con las palabras verticales, en este caso el rango seria en filas (x) y no en columnas (y)
+        for i in range(palabra_len):
+          matriz[x + i][y] = f"({matriz[x + i][y]})"              #resalta las palabras verticales
+```
+Finalizado el conteo de las palabras en vertical, así se estaria viendo con el conteo en horizontal:
+
+
+``` python
+def encontrar_palabras(matriz, palabra):
+  tamañoM = len(matriz)
+  palabra_len = len(palabra)
+  for x in range (tamañoM):
+    for y in range (tamañoM - palabra_len):
+      if "".join(matriz[x][y:y + palabra_len]) == palabra:
+        for i in range(palabra_len):
+          matriz[x][y + i] = f"({matriz[x][y + i]})"
+  for y in range(tamañoM):
+    for x in range(tamañoM - palabra_len + 1):
+      if "".join(matriz[x + i][y] for i in range(palabra_len)) == palabra:
+        for i in range(palabra_len):
+          matriz[x + i][y] = f"({matriz[x + i][y]})"
+``` 
+
+Ahora, nos quedaria faltanto el destacar las diagonales
+
+``` python
+  for x in range(tamañoM - palabra_len + 1):                           #en las pasadas aumentaba 
+    for y in range(tamañoM - palabra_len + 1):
+      if "".join(matriz[x + i][y + i] for i in range(palabra_len)) == palabra:
+        for i in range(palabra_len):
+          matriz[x + i][y + i] = f"({matriz[x + i][y + i]})"
+``` 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+``` python
+``` 
